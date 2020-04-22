@@ -2,6 +2,9 @@
 # Ignore config js
 config.js
 
+# Ignore project brief folder
+/project_brief
+
 # dependencies
 /node_modules
 /.pnp
