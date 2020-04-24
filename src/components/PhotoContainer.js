@@ -1,20 +1,31 @@
 import React from 'react';
 import NoResults from './NoResults';
 import Photo from './Photo';
+import PropTypes from 'prop-types';
 
 const PhotoContainer = (props) =>
-<div class="photo-container">
-    <h2>Results</h2>
-    <ul>
+{
+    //if props photos array has photos display them, else display noResults component
+    const contentToShow = props.photos.length > 0 ? 
+        props.photos.map( photo => 
+            <Photo link={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`} key={photo.id}/> )
+        : <NoResults />;
+    ; 
 
+    console.log('photo container re-rendered with', props.topic);
 
-        <NoResults />
-    </ul>
-</div>;
+    return (
+        <div className="photo-container">
+            <h2>Results</h2>
+            <ul>
+                {contentToShow}
+            </ul>
+        </div>
+    )
+};
+
+PhotoContainer.propTypes = {
+    photos: PropTypes.array.isRequired
+}
 
 export default PhotoContainer;
-
-{/* <Photo link="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg"/>
-<Photo link="https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg"/>
-<Photo link="https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg"/>
-<Photo link="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg"/> */}
