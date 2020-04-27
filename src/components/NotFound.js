@@ -1,10 +1,10 @@
 import React from 'react';
 
 const NotFound = () =>
-    <li className="not-found">
+    <div className="not-found">
         <h3>Page Not Found</h3>
-        <p>The page you were looking for ... has disappeared mysteriously. Please try again.</p>
-    </li>
+        <p>The page you were looking for ... has disappeared mysteriously. Check the path and try again.</p>
+    </div>
 ;
 
 export default NotFound;

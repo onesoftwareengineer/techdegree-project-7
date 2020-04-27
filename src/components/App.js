@@ -14,26 +14,34 @@ class App extends Component {
     cats: [],
     dogs: [],
     computers: [],
-    searchResults: []
+    searchResults: [],
+    searchQuery: "",
+    loadingFinished : false
   }
 
   // function that fetches photos from flickr API depending on searchQuery and then updates state at stateKey
   getPhotos = (stateKey, searchQuery) => {
+    this.setState( {loadingFinished: false} );
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${searchQuery}&per_page=24&format=json&nojsoncallback=1`)
       .then( response => {
-        this.setState({[stateKey]: response.data.photos.photo}) ;
+        this.setState( () => 
+          ['cats','dogs','computers'].indexOf(searchQuery) > -1 ? 
+          {[stateKey]: response.data.photos.photo, loadingFinished: true} :
+          {[stateKey]: response.data.photos.photo, searchQuery, loadingFinished: true}
+        );
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       })
-      .finally( () => {
-        // console.log('final state', this.state);        
-        console.log(stateKey, ' state updated with ', searchQuery);
-      })
+      // .finally( () => {
+      //   // console.log('final state', this.state);        
+      //   console.log(stateKey, ' state updated with ', searchQuery);
+      // })
       ;
   }
 
+  //fetches initial state for cats dogs and computer photos
   componentDidMount () {
     this.getPhotos('cats', 'cats');
     this.getPhotos('dogs', 'dogs');
@@ -44,14 +52,33 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm getPhotos={this.getPhotos} />
+          <SearchForm getPhotos={this.getPhotos}/>
           <MainNav />
           <Switch>
-            <Route exact path="/" render={ () => <PhotoContainer photos={this.state.cats} topic={'home'}/> } />
-            <Route exact path="/cats" render={ () => <PhotoContainer photos={this.state.cats} topic={'cats'} /> } />
-            <Route exact path="/dogs" render={ () => <PhotoContainer photos={this.state.dogs} topic={'dogs'} /> } />
-            <Route exact path="/computers" render={ () => <PhotoContainer photos={this.state.computers} topic={'computers'} /> } />
-            <Route path="/search/:searchQuery" render={ () => <PhotoContainer photos={this.state.searchResults}  topic={'search results'} /> } />
+            <Route exact path="/" render={ () => 
+              <PhotoContainer 
+              photos={this.state.cats} 
+              topic={'cats'} 
+              loadingFinished={this.state.loadingFinished} /> } />
+            <Route exact path="/cats" render={ () => 
+              <PhotoContainer 
+              photos={this.state.cats} 
+              topic={'cats'} 
+              loadingFinished={this.state.loadingFinished} /> } />
+            <Route exact path="/dogs" render={ () => 
+              <PhotoContainer 
+              photos={this.state.dogs} 
+              topic={'dogs'} 
+              loadingFinished={this.state.loadingFinished} /> } />
+            <Route exact path="/computers" render={ () => 
+              <PhotoContainer photos={this.state.computers} 
+              topic={'computers'} 
+              loadingFinished={this.state.loadingFinished} /> } />
+            <Route path="/search/:searchQuery" 
+              render={ () => <PhotoContainer 
+              photos={this.state.searchResults} 
+              topic={this.state.searchQuery} 
+              loadingFinished={this.state.loadingFinished} /> } />
             <Route component={NotFound} />
           </Switch>
         </div>

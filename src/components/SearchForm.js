@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import createHistory from 'history/createBrowserHistory';
+import { withRouter } from 'react-router-dom';
 
 class Searchform extends Component {
     //when user submits search form
@@ -10,9 +10,7 @@ class Searchform extends Component {
         this.props.getPhotos('searchResults', this.searchQuery.value);
         // changes location to search results page with search topic added to the path
         const path = `/search/${this.searchQuery.value}`;
-        const history = createHistory();
-        history.push(path);
-        //this.props.history.push(path);
+        this.props.history.push(path);
     }
 
     render () {
@@ -30,4 +28,4 @@ class Searchform extends Component {
     }
 };
 
-export default Searchform;
+export default withRouter(Searchform);
