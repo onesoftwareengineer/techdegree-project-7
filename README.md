@@ -5,15 +5,15 @@ The search application searches for and displays photos on a certain topic enter
 Javascript, React, React Router, Axios, JSX, HTML, CSS
 
 ## Screenshots
-![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot1.JPG)
+![image](https://github.com/onesoftwareengineer/techdegree-project-7/blob/master/screenshots-home.JPG)
 *main page*
 
 
-![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot2.JPG)
+![image](https://github.com/onesoftwareengineer/techdegree-project-7/blob/master/screenshots-search.JPG)
 *search results*
 
 
-![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot3.JPG)
+![image](https://github.com/onesoftwareengineer/techdegree-project-7/blob/master/screenshots-noresults.JPG)
 *no results*
 
 
