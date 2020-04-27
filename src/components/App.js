@@ -26,7 +26,9 @@ class App extends Component {
       .then( response => {
         this.setState( () => 
           ['cats','dogs','computers'].indexOf(searchQuery) > -1 ? 
+          // if function is called for main categories update only these
           {[stateKey]: response.data.photos.photo, loadingFinished: true} :
+          // else if user searched for a custom query, display this query
           {[stateKey]: response.data.photos.photo, searchQuery, loadingFinished: true}
         );
       })
