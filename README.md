@@ -4,6 +4,11 @@ The search application searches for and displays photos on a certain topic enter
 ## Technologies
 Javascript, React, React Router, Axios, JSX, HTML, CSS
 
+## Technical details
+To make the app work, add a config.js file with the following content to the src:
+    const apiKey = 'place your own flickr api key here';
+    export default apiKey;
+
 ## Screenshots
 ![image](https://github.com/onesoftwareengineer/techdegree-project-7/blob/master/screenshots-home.JPG)
 *main page*
