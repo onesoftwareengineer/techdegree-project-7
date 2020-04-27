@@ -1,3 +1,23 @@
+## React based photo search app that uses the Flickr API
+The search application searches for and displays photos on a certain topic entered by the user. It uses React to build the app and Axios to call the Flickr API.
+
+## Technologies
+Javascript, React, React Router, Axios, JSX, HTML, CSS
+
+## Screenshots
+![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot1.JPG)
+*main page*
+
+
+![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot2.JPG)
+*search results*
+
+
+![image](https://raw.githubusercontent.com/onesoftwareengineer/techdegree-project-6/master/screenshot3.JPG)
+*no results*
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
